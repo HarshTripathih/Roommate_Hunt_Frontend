@@ -1,10 +1,5 @@
-const API_BASE_URL = require('./config')
-
-// console.log(API_BASE_URL);
-
 export const checkSession = (admin) => {
-    const url = `${API_BASE_URL}/api/users/check-session`;
-    console.log(API_BASE_URL)
+    const url = "/api/users/check-session";
 
     fetch(url)
         .then(res => {
@@ -24,7 +19,7 @@ export const checkSession = (admin) => {
 
 export const getPosts = (postList) => {
     // the URL for the request
-    const url = `${API_BASE_URL}/api/posts`;
+    const url = "/api/posts";
 
     // Since this is a GET request, simply call fetch on the URL
     fetch(url)
@@ -40,7 +35,7 @@ export const getPosts = (postList) => {
         .then(json => {
             // the resolved promise with the JSON body
             for (let i = 0; i < json.length; i++){
-                const user_url = `${API_BASE_URL}/api/users/` + json[i]["creator"]
+                const user_url = "/api/users/" + json[i]["creator"]
 
                 fetch(user_url).then(resq => {
                     if (resq.status === 200){
@@ -66,7 +61,7 @@ export const getPosts = (postList) => {
 };
 
 export const getUsers= (userList) => {
-    const url = `${API_BASE_URL}/api/users`;
+    const url = "/api/users";
 
     fetch(url)
         .then(res => {
@@ -87,7 +82,7 @@ export const getUsers= (userList) => {
 
 export const deleteUser = (id, updateInfo) => {
     // the URL for the request
-    const url = `${API_BASE_URL}/api/users/` + id;
+    const url = "/api/users/" + id;
 
 
     // Create our request constructor with all the parameters we need
