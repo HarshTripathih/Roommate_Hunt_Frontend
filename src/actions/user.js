@@ -1,8 +1,9 @@
-// Functions to help with user actions.
+const API_BASE_URL = require('./config')
 
+// console.log(API_BASE_URL);
 
 export const checkSession = (app) => {
-    const url = "/api/users/check-session";
+    const url = `${API_BASE_URL}/api/users/check-session`;
 
     fetch(url)
         .then(res => {
@@ -28,7 +29,7 @@ export const checkSession = (app) => {
 export const login = (loginComp, loginUser) => {
     // Create our request constructor with all the parameters we need
     // console.log(JSON.stringify(loginComp.state))
-    const request = new Request("/api/users/login", {
+    const request = new Request(`${API_BASE_URL}/api/users/login`, {
         method: "post",
         body: JSON.stringify(loginComp.state),
         headers: {
@@ -57,7 +58,7 @@ export const login = (loginComp, loginUser) => {
 
 
 export const logout = (logoutUser) => {
-    const url = "/api/users/logout"
+    const url = `${API_BASE_URL}/api/users/logout`
     fetch(url)
         .then(res => {
             if (res.status === 200){
@@ -83,7 +84,7 @@ export const registerUser = (registerComp, e) => {
     data.append('aboutMe', registerComp.state.aboutMe)
     data.append('image', e.target.image.files[0])
 
-    const request = new Request("/api/users/new", {
+    const request = new Request(`${API_BASE_URL}/api/users/new`, {
         method: "post",
         body: data,
 
@@ -106,7 +107,7 @@ export const registerUser = (registerComp, e) => {
 
 
 export const getUserByIDForCard = (userCardComp, userid) => {
-    const url = `/api/users/${userid}`;
+    const url = `${API_BASE_URL}/api/users/${userid}`;
 
     fetch(url)
         .then(res => {
@@ -136,7 +137,7 @@ export const getUserByIDForCard = (userCardComp, userid) => {
 
 export const reportUserByID = (userid) => {
 
-    const request = new Request(`/api/users/${userid}/report`, {
+    const request = new Request(`${API_BASE_URL}/api/users/${userid}/report`, {
         method: "post",
     });
     fetch(request)
@@ -154,7 +155,7 @@ export const reportUserByID = (userid) => {
 
 
 export const getUserByIDForEdit = (editProfileComp, userid) => {
-    const url = `/api/users/${userid}`;
+    const url = `${API_BASE_URL}/api/users/${userid}`;
 
     fetch(url)
         .then(res => {
@@ -181,7 +182,7 @@ export const getUserByIDForEdit = (editProfileComp, userid) => {
 // A function to send a PUT request with edit
 export const editProfileInfo = (editProfileComp, photo) => {
     // the URL for the request
-    const url = `/api/users/${editProfileComp.state.userid}`;
+    const url = `${API_BASE_URL}/api/users/${editProfileComp.state.userid}`;
     const { firstname, lastname, email, username } = editProfileComp.state
     // The data we are going to send in our request
   
@@ -225,7 +226,7 @@ export const editProfileInfo = (editProfileComp, photo) => {
 
 export const editUserPhoto = (e,userid) => {
     // the URL for the request
-    const url = `/api/users/${userid}/img`;
+    const url = `${API_BASE_URL}/api/users/${userid}/img`;
 
     // The data we are going to send in our request
     
@@ -261,7 +262,7 @@ export const editUserPhoto = (e,userid) => {
 
 export const editUserPassword = (editPassComp) => {
     // the URL for the request
-    const url = `/api/users/${editPassComp.state.userid}/password`;
+    const url = `${API_BASE_URL}/api/users/${editPassComp.state.userid}/password`;
 
     const request = new Request(url, {
         method: "put",
