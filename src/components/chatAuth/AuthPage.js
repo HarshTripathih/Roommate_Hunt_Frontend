@@ -6,7 +6,7 @@ const AuthPage = (props) => {
     e.preventDefault();
     const { value } = e.target[0];
     axios
-      .post("/authenticate", { username: value })
+      .post("https://roommatehuntbackend.onrender.com/authenticate", { username: value })
       .then((r) => props.onAuth({ ...r.data, secret: value }))
       .catch((e) => console.log("Auth Error", e));
   };
